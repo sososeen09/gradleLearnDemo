@@ -1,0 +1,3 @@
+task taskC << {
+	println "this is ${name} from ${project.name}"
+}

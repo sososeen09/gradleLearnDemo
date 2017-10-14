@@ -1,0 +1,23 @@
+
+apply plugin:CredentialPlugin
+
+userCredential{
+	username='admin'
+	password='000000'
+}
+
+class CredentialPlugin implements Plugin<Project>{
+	@Override
+	void apply(Project project){
+		project.extensions.create('userCredential',CredentialExtension)
+		project.tasks.create('printUserCredential') << {
+			 println "username is: " + project.userCredential.username
+			 println "password is: " + project.userCredential.password
+		}
+	}
+}
+
+class CredentialExtension {
+	String username
+	String password
+}

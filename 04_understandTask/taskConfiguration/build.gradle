@@ -1,0 +1,53 @@
+
+version=new ProjectVersion(0,1)
+class ProjectVersion{
+    Integer major
+    Integer minor
+    Boolean release
+
+    ProjectVersion(Integer major, Integer minor){
+       this.major=major
+       this.minor=minor
+       this.release=Boolean.FALSE
+    } 
+
+
+    ProjectVersion(Integer major, Integer minor, Boolean release){
+       this.major=major
+       this.minor=minor
+       this.release=release
+    }
+
+    @Override
+    String toString(){
+      "$major.$minor${release?'': '-SNAPSHOT'}"
+    }
+
+}
+
+task printVersion << {
+  logger.quiet "Version: $version"
+}
+
+// Project接口提供了file方法，它会创建一个相对于项目目录的java.io.File实例
+ext.versionFile=file('version.properties')
+
+task loadVersion{
+    project.version=readVersion()
+}
+
+//readVersion方法，与task是不同的
+ProjectVersion readVersion(){
+    logger.quiet 'Reading the version file'
+    if(!versionFile.exists()){
+        throw new GradleException ("Required version file dose not exist:$versionFile.canonicalPath " )
+    }
+
+    //Groovy的文件实现通过添加新的方法来读取InputStream
+    Properties versionProps=new Properties()
+    versionFile.withInputStream{stream->
+        versionProps.load(stream)
+    }
+    // 在Groovy中，如果return是方法中的最后一条语句的话，则可以将它省略
+    new ProjectVersion(versionProps.major.toInteger(),versionProps.minor.toInteger(),versionProps.release.toBoolean())
+}

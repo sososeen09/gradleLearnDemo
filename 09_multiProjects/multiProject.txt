@@ -1,0 +1,7 @@
+multiProject
+      |———— settings.gradle
+      |———— build.gradle
+      |———— sub_project1
+      |            |———— build.gradle
+      |———— sub_project2
+      |            |———— build.gradle

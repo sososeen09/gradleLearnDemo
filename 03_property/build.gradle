@@ -1,0 +1,31 @@
+setDescription('myProject')
+println "Description of project $name: "+project.description
+
+version = 'this is the project version'
+description = 'this is the project description'
+
+task showProjectProperties << {
+   println version
+   println project.description
+   println description
+}
+
+
+// 只在初始声明额外属性时需要使用ext命名空间
+project.ext.myProp='myValue'
+
+ext{
+        someOtherProp=123
+}
+
+// 使用ext命名空间访问属性是可选的
+assert myProp=='myValue'
+
+println project.someOtherProp
+
+ext.someOtherProp=567
+
+task printMyProperties <<{
+    println myProperties
+}
+

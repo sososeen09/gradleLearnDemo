@@ -1,0 +1,19 @@
+version ='0.1-SNAPSHOT'
+//task printVersion << {
+//  logger.quiet "Version: $version"
+//}
+
+//可以在创建task的时候为这两个属性设置值作为参数
+//task printVersion(group: 'versioning',description:'Print project version' ) << {
+//  logger.quiet "Version: $version"
+//}
+
+
+//也可以通过调用setter方法来设置属性
+task printVersion{
+  group = 'versioning'
+  description = 'Print project version'   
+  doLast{
+    logger.quiet "Version: $version"
+  }
+}

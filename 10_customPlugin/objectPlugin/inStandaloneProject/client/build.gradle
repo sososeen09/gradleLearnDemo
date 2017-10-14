@@ -1,0 +1,20 @@
+
+apply plugin : 'credentials'
+buildscript {
+    repositories {
+        maven {
+            url 'file:../lib'
+        }
+
+    }
+
+    dependencies {
+        classpath 'com.sososeen09:credential:1.0'
+    }
+}
+
+userCredential{
+    username='admin'
+    password='000000'
+}
+

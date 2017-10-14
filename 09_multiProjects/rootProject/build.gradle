@@ -1,0 +1,31 @@
+
+ext.projectInfo=['group':'com.sososeen09','version':'0.1']
+
+group = projectInfo.group
+version = projectInfo.version
+allprojects{
+	task allTaskHello << {
+		println "hello from ${project.name}"
+	}
+}
+
+
+subprojects{
+	task subTaskHello << {
+		println "hello from sub project ${project.name}"
+	}
+}
+
+
+project(':sub_project1'){
+	group = projectInfo.group
+    version = projectInfo.version
+	task forSub1 <<{
+		println 'this is only for sub_project1 task'
+	}
+}
+
+project(':sub_project2'){
+	group = projectInfo.group
+    version = projectInfo.version
+}

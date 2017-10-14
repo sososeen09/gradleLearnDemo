@@ -1,0 +1,22 @@
+configurations {
+    myConfiguration {
+        description = 'this is  my configuration'
+        visible = false
+    }
+}
+
+dependencies {
+   myConfiguration 'org.jsoup:jsoup:1.9.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+task printDependencies << {
+    configurations.getByName('myConfiguration').each { dependency ->
+        println dependency
+    }
+}
+

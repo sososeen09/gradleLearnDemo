@@ -1,0 +1,17 @@
+//task是一个任务，doLast 是一个action
+task helloWorld {
+    doFirst{
+       println 'hello World! do first'
+    }
+
+    println 'hello world!'
+
+    doLast {
+	println 'hello World! do last'
+    }
+}
+
+//可以使用左移符号 << 来简单的代表doLast
+task name << {
+    println 'sososeen09'
+}

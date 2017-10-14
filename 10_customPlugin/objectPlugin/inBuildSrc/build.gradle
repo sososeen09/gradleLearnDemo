@@ -1,0 +1,7 @@
+
+apply plugin:'credentials'
+
+userCredential{
+	username='admin'
+	password='000000'
+}

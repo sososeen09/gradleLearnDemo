@@ -1,0 +1,16 @@
+version ='0.1-SNAPSHOT'
+task first << { println 'first'}
+task second << { println 'second' }
+
+//指定多个task依赖
+task printVersion(dependsOn :[second,first]) << {
+    logger.quiet "Version: $version"
+}
+
+//task third(dependsOn : printVersion) <<{
+//    println 'third'
+//}
+
+//还可以采用这样的方式
+task third <<{ println 'third'}
+third.dependsOn('printVersion')

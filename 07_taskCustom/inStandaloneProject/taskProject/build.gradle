@@ -1,0 +1,24 @@
+apply plugin: 'groovy' //应用这个插件来编译Groovy代码
+apply plugin: 'maven'
+
+version = '1.0'
+group = 'com.sososeen09.gia'
+archivesBaseName = 'releaseVersionTask'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 使用Gradle中的API需要这个
+    compile gradleApi()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file:../lib")
+        }
+    }
+}
+
